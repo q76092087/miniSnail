@@ -1,7 +1,7 @@
 <template>
-	<view>
-		我的
-	</view>
+	<div>
+		<button type="primary" @click="getLogin">登陆</button>
+	</div>
 </template>
 
 <script>
@@ -12,7 +12,16 @@
 			}
 		},
 		methods: {
-			
+			getLogin(){
+				uni.login({
+					success(e) {
+						console.log("成功",e);
+					},
+					fail(e){
+						console.log("失败",e);
+					}
+				})
+			}
 		}
 	}
 </script>

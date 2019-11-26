@@ -19,8 +19,8 @@
 	export default {
 		data() {
 			return {
-				StatusBar: this.StatusBar,
-				CustomBar: this.CustomBar
+				StatusBar: 20,
+				CustomBar: 64
 			};
 		},
 		name: 'cu-custom',
@@ -61,5 +61,5 @@
 </script>
 
 <style>
-
+	
 </style>

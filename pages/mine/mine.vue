@@ -16,21 +16,67 @@
 				<text class="text-white cuIcon-usefull"></text>
 			</div>
 		</div>
-		<div class="padding bg-white flex justify-around">
-			<div class="text-center">
-				<text class="text-red cuIcon-likefill icon-size"></text>
-				<p>我的关注</p>
-			</div>
-			<div class="text-center">
-				<text class="text-red cuIcon-timefill icon-size"></text>
-				<p>浏览历史</p>
-			</div>
+		
+		<view class="cu-list grid col-2 no-border">
+			<view class="cu-item">
+				<view class="cuIcon-likefill text-red"></view>
+				<text>我的收藏</text>
+			</view>
+			<view class="cu-item">
+				<view class="cuIcon-footprint text-red"></view>
+				<text>浏览历史</text>
+			</view>
+			<!-- <view class="cu-item">
+				<view class="cuIcon-footprint text-red"></view>
+				<text>我的赞</text>
+			</view> -->
+		</view>
+		
+		<div class="cu-list menu margin-top-sm">
+			<!-- <view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-homefill text-grey"></text>
+					<text class="text-grey">我的交易</text>
+				</view>
+			</view> -->
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-share text-grey"></text>
+					<text class="text-grey">我的分销</text>
+				</view>
+			</view>
+			<!-- <view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-share text-grey"></text>
+					<text class="text-grey">我的房源</text>
+				</view>
+			</view> -->
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-phone text-grey"></text>
+					<text class="text-grey">我的预约</text>
+				</view>
+			</view>
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-question text-grey"></text>
+					<text class="text-grey">问题反馈</text>
+				</view>
+			</view>
 		</div>
+		
+		
 	</div>
 </template>
 
 <script>
 	export default {
+		onLoad() {
+			
+		},
+		onShow() {
+			
+		},
 		data() {
 			return {
 				
@@ -52,15 +98,7 @@
 </script>
 
 <style scoped>
-.mine{
-	/* height: 100vh; */
-	/* background-color: #007AFF; */
-	
-}
 .my-icon{
 	transform: rotateZ(90deg);
-}
-.icon-size{
-	font-size: 54upx;
 }
 </style>

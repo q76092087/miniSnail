@@ -20,6 +20,24 @@
 				<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
 			</swiper-item>
 		</swiper>
+		<view class="cu-list grid col-4 no-border">
+			<view class="cu-item">
+				<view class="iconfont snailzuixinfangyuan text-green"></view>
+				<text>新房</text>
+			</view>
+			<view class="cu-item">
+				<view class="iconfont snailershoufang text-blue"></view>
+				<text>二手房</text>
+			</view>
+			<view class="cu-item">
+				<view class="iconfont snailzufang text-orange"></view>
+				<text>住宅租房</text>
+			</view>
+			<view class="cu-item">
+				<view class="iconfont snaildianpu text-cyan"></view>
+				<text>商业租房</text>
+			</view>
+		</view>
 	</div>
 </template>
 
@@ -80,4 +98,7 @@
 	/* .home >>> .screen-swiper{
 		min-height: 100rpx !important;
 	} */
+	.cu-item > .iconfont{
+		font-size: 50upx;
+	}
 </style>

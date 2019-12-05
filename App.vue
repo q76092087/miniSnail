@@ -21,4 +21,5 @@
 	@import 'static/css/font.css';
 	
 	/*每个页面公共css */
+	@import 'static/css/common.css';
 </style>

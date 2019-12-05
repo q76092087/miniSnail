@@ -1,0 +1,16 @@
+/* 公共css */
+.width-full{
+	width: 100%;
+}
+.width-half{
+	width: 50%;
+}
+.width-33{
+	width: 33.3%;
+}
+.inline-block{
+	display: inline-block;
+}
+.nowrap{
+	white-space: nowrap;
+}

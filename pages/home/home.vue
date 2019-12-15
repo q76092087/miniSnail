@@ -21,7 +21,7 @@
 			</swiper-item>
 		</swiper>
 		<view class="cu-list grid col-4 no-border margin-bottom-xs">
-			<view class="cu-item">
+			<view class="cu-item" @click="toHouseList">
 				<view class="iconfont snailzuixinfangyuan text-green"></view>
 				<text>新房</text>
 			</view>
@@ -120,6 +120,11 @@
 			},
 			InputBlur(e) {
 				this.InputBottom = 0
+			},
+			toHouseList(){
+				this.$Router.push({
+					name:'houseList'
+				})
 			}
 		}
 	}

@@ -14,8 +14,8 @@
 
 <style>
 	/* colorui */
-	@import 'colorui/main.css';
-	@import 'colorui/icon.css';
+	@import 'wxcomponents/colorui/main.css';
+	@import 'wxcomponents/colorui/icon.css';
 	
 	/* font css */
 	@import 'static/css/font.css';

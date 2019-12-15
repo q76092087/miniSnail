@@ -13,8 +13,13 @@
 	],
 	"subPackages":[
 		{
-			"root":"",
-			"pages":[]
+			"root":"pages/house",
+			"pages":[
+			    {
+                    "path" : "houseList/houseList",
+                    "style" : {}
+                }
+            ]
 		}
 	],
 	"globalStyle": {
@@ -29,8 +34,8 @@
 	"condition" : { //模式配置，仅开发期间生效
 		"current": 0, //当前激活的模式(list 的索引项)
 		"list": [{
-			"name": "home", //模式名称
-			"path": "pages/home/home", //启动页面，必选
+			"name": "house", //模式名称
+			"path": "pages/house/houseList/houseList", //启动页面，必选
 			"query": "" //启动参数，在页面的onLoad函数里面得到
 		}]
 	},

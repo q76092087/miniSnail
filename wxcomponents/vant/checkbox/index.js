@@ -1,13 +1,26 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+var utils_1 = require("../common/utils");
+function emit(target, value) {
+    target.$emit('input', value);
+    target.$emit('change', value);
+}
+component_1.VantComponent({
     field: true,
     relation: {
         name: 'checkbox-group',
-        type: 'ancestor'
+        type: 'ancestor',
+        linked: function (target) {
+            this.parent = target;
+        },
+        unlinked: function () {
+            this.parent = null;
+        }
     },
     classes: ['icon-class', 'label-class'],
     props: {
-        value: null,
+        value: Boolean,
         disabled: Boolean,
         useIconSlot: Boolean,
         checkedColor: String,
@@ -16,52 +29,61 @@ VantComponent({
         shape: {
             type: String,
             value: 'round'
+        },
+        iconSize: {
+            type: null,
+            observer: 'setSizeWithUnit'
         }
     },
+    data: {
+        sizeWithUnit: '20px'
+    },
     methods: {
-        emitChange(value) {
-            const parent = this.getRelationNodes('../checkbox-group/index')[0];
-            if (parent) {
-                this.setParentValue(parent, value);
+        emitChange: function (value) {
+            if (this.parent) {
+                this.setParentValue(this.parent, value);
             }
             else {
-                this.$emit('input', value);
-                this.$emit('change', value);
+                emit(this, value);
             }
         },
-        toggle() {
-            if (!this.data.disabled) {
-                this.emitChange(!this.data.value);
+        toggle: function () {
+            var _a = this.data, disabled = _a.disabled, value = _a.value;
+            if (!disabled) {
+                this.emitChange(!value);
             }
         },
-        onClickLabel() {
-            if (!this.data.disabled && !this.data.labelDisabled) {
-                this.emitChange(!this.data.value);
+        onClickLabel: function () {
+            var _a = this.data, labelDisabled = _a.labelDisabled, disabled = _a.disabled, value = _a.value;
+            if (!disabled && !labelDisabled) {
+                this.emitChange(!value);
             }
         },
-        setParentValue(parent, value) {
-            const parentValue = parent.data.value.slice();
-            const { name } = this.data;
+        setParentValue: function (parent, value) {
+            var parentValue = parent.data.value.slice();
+            var name = this.data.name;
+            var max = parent.data.max;
             if (value) {
-                if (parent.data.max && parentValue.length >= parent.data.max) {
+                if (max && parentValue.length >= max) {
                     return;
                 }
-                /* istanbul ignore else */
                 if (parentValue.indexOf(name) === -1) {
                     parentValue.push(name);
-                    parent.$emit('input', parentValue);
-                    parent.$emit('change', parentValue);
+                    emit(parent, parentValue);
                 }
             }
             else {
-                const index = parentValue.indexOf(name);
-                /* istanbul ignore else */
+                var index = parentValue.indexOf(name);
                 if (index !== -1) {
                     parentValue.splice(index, 1);
-                    parent.$emit('input', parentValue);
-                    parent.$emit('change', parentValue);
+                    emit(parent, parentValue);
                 }
             }
-        }
+        },
+        setSizeWithUnit: function (size) {
+            this.set({
+                sizeWithUnit: utils_1.addUnit(size)
+            });
+        },
     }
 });

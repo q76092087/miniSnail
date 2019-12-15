@@ -28,7 +28,10 @@
 		"backgroundColor": "#F8F8F8",
 		"navigationStyle": "custom",
 		"usingComponents":{
-			
+			"van-button": "/wxcomponents/vant/button/index",
+			"van-dropdown-menu": "/wxcomponents/vant/dropdown-menu/index",
+			"van-dropdown-item": "/wxcomponents/vant/dropdown-item/index",
+			"van-loading": "/wxcomponents/vant/loading/index"
 		}
 	},
 	"condition" : { //模式配置，仅开发期间生效

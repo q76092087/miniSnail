@@ -1,32 +1,42 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     field: true,
     relation: {
         name: 'radio',
         type: 'descendant',
-        linked(target) {
-            const { value, disabled } = this.data;
-            target.set({
-                value: value,
-                disabled: disabled || target.data.disabled
-            });
+        linked: function (target) {
+            this.children = this.children || [];
+            this.children.push(target);
+            this.updateChild(target);
+        },
+        unlinked: function (target) {
+            this.children = this.children.filter(function (child) { return child !== target; });
         }
     },
     props: {
-        value: null,
-        disabled: Boolean
+        value: {
+            type: null,
+            observer: 'updateChildren'
+        },
+        disabled: {
+            type: Boolean,
+            observer: 'updateChildren'
+        }
     },
-    watch: {
-        value(value) {
-            const children = this.getRelationNodes('../radio/index');
-            children.forEach(child => {
-                child.set({ value });
+    methods: {
+        updateChildren: function () {
+            var _this = this;
+            (this.children || []).forEach(function (child) {
+                return _this.updateChild(child);
             });
         },
-        disabled(disabled) {
-            const children = this.getRelationNodes('../radio/index');
-            children.forEach(child => {
-                child.set({ disabled: disabled || child.data.disabled });
+        updateChild: function (child) {
+            var _a = this.data, value = _a.value, disabled = _a.disabled;
+            child.setData({
+                value: value,
+                disabled: disabled || child.data.disabled
             });
         }
     }

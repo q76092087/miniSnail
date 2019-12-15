@@ -1,64 +1,39 @@
-import { VantComponent } from '../common/component';
-import { BLUE } from '../common/color';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+var color_1 = require("../common/color");
+var utils_1 = require("../common/utils");
+component_1.VantComponent({
     props: {
         inactive: Boolean,
         percentage: Number,
         pivotText: String,
         pivotColor: String,
+        trackColor: String,
         showPivot: {
             type: Boolean,
             value: true
         },
         color: {
             type: String,
-            value: BLUE
+            value: color_1.BLUE
         },
         textColor: {
             type: String,
             value: '#fff'
+        },
+        strokeWidth: {
+            type: null,
+            observer: 'setStrokeWidthUnit'
         }
     },
     data: {
-        pivotWidth: 0,
-        progressWidth: 0
-    },
-    watch: {
-        pivotText: 'getWidth',
-        showPivot: 'getWidth'
-    },
-    computed: {
-        portionStyle() {
-            const width = (this.data.progressWidth - this.data.pivotWidth) * this.data.percentage / 100 + 'px';
-            const background = this.getCurrentColor();
-            return `width: ${width}; background: ${background}; `;
-        },
-        pivotStyle() {
-            const color = this.data.textColor;
-            const background = this.data.pivotColor || this.getCurrentColor();
-            return `color: ${color}; background: ${background}`;
-        },
-        text() {
-            return this.data.pivotText || this.data.percentage + '%';
-        }
-    },
-    mounted() {
-        this.getWidth();
+        strokeWidthUnit: '4px'
     },
     methods: {
-        getCurrentColor() {
-            return this.data.inactive ? '#cacaca' : this.data.color;
-        },
-        getWidth() {
-            this.getRect('.van-progress').then(rect => {
-                this.set({
-                    progressWidth: rect.width
-                });
-            });
-            this.getRect('.van-progress__pivot').then(rect => {
-                this.set({
-                    pivotWidth: rect.width || 0
-                });
+        setStrokeWidthUnit: function (val) {
+            this.setData({
+                strokeWidthUnit: utils_1.addUnit(val)
             });
         }
     }

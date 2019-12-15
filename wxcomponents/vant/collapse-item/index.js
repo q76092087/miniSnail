@@ -1,10 +1,13 @@
-import { VantComponent } from '../common/component';
-VantComponent({
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+var nextTick = function () { return new Promise(function (resolve) { return setTimeout(resolve, 20); }); };
+component_1.VantComponent({
     classes: ['title-class', 'content-class'],
     relation: {
         name: 'collapse',
         type: 'ancestor',
-        linked(parent) {
+        linked: function (parent) {
             this.parent = parent;
         }
     },
@@ -15,6 +18,7 @@ VantComponent({
         icon: String,
         label: String,
         disabled: Boolean,
+        clickable: Boolean,
         border: {
             type: Boolean,
             value: true
@@ -26,63 +30,68 @@ VantComponent({
     },
     data: {
         contentHeight: 0,
-        expanded: false
+        expanded: false,
+        transition: false
     },
-    beforeCreate() {
-        this.animation = wx.createAnimation({
-            duration: 300,
-            timingFunction: 'ease-in-out'
+    mounted: function () {
+        var _this = this;
+        this.updateExpanded()
+            .then(nextTick)
+            .then(function () {
+            var data = { transition: true };
+            if (_this.data.expanded) {
+                data.contentHeight = 'auto';
+            }
+            _this.setData(data);
         });
     },
     methods: {
-        updateExpanded() {
+        updateExpanded: function () {
             if (!this.parent) {
-                return null;
+                return Promise.resolve();
             }
-            const { value, accordion, items } = this.parent.data;
-            const { name } = this.data;
-            const index = items.indexOf(this);
-            const currentName = name == null ? index : name;
-            const expanded = accordion
+            var _a = this.parent.data, value = _a.value, accordion = _a.accordion;
+            var _b = this.parent.children, children = _b === void 0 ? [] : _b;
+            var name = this.data.name;
+            var index = children.indexOf(this);
+            var currentName = name == null ? index : name;
+            var expanded = accordion
                 ? value === currentName
-                : value.some(name => name === currentName);
+                : (value || []).some(function (name) { return name === currentName; });
+            var stack = [];
             if (expanded !== this.data.expanded) {
-                this.updateStyle(expanded);
+                stack.push(this.updateStyle(expanded));
             }
-            this.set({ index, expanded });
+            stack.push(this.set({ index: index, expanded: expanded }));
+            return Promise.all(stack);
         },
-        updateStyle(expanded) {
-            this.getRect('.van-collapse-item__content').then(res => {
-                const animationData = this.animation
-                    .height(expanded ? res.height : 0)
-                    .step()
-                    .export();
+        updateStyle: function (expanded) {
+            var _this = this;
+            return this.getRect('.van-collapse-item__content')
+                .then(function (rect) { return rect.height; })
+                .then(function (height) {
                 if (expanded) {
-                    this.set({ animationData });
-                }
-                else {
-                    this.set({
-                        contentHeight: res.height + 'px'
-                    }, () => {
-                        setTimeout(() => {
-                            this.set({ animationData });
-                        }, 20);
+                    return _this.set({
+                        contentHeight: height ? height + "px" : 'auto'
                     });
                 }
+                return _this.set({ contentHeight: height + "px" })
+                    .then(nextTick)
+                    .then(function () { return _this.set({ contentHeight: 0 }); });
             });
         },
-        onClick() {
+        onClick: function () {
             if (this.data.disabled) {
                 return;
             }
-            const { name, expanded } = this.data;
-            const index = this.parent.data.items.indexOf(this);
-            const currentName = name == null ? index : name;
+            var _a = this.data, name = _a.name, expanded = _a.expanded;
+            var index = this.parent.children.indexOf(this);
+            var currentName = name == null ? index : name;
             this.parent.switch(currentName, !expanded);
         },
-        onTransitionEnd() {
+        onTransitionEnd: function () {
             if (this.data.expanded) {
-                this.set({
+                this.setData({
                     contentHeight: 'auto'
                 });
             }

@@ -1,59 +1,66 @@
-import { VantComponent } from '../common/component';
-import { safeArea } from '../mixins/safe-area';
-VantComponent({
-    mixins: [safeArea()],
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var component_1 = require("../common/component");
+component_1.VantComponent({
     relation: {
         name: 'tabbar-item',
         type: 'descendant',
-        linked(target) {
-            this.children = this.children || [];
+        linked: function (target) {
             this.children.push(target);
-            this.setActiveItem();
+            target.parent = this;
+            target.updateFromParent();
         },
-        unlinked(target) {
-            this.children = this.children || [];
-            this.children = this.children.filter(item => item !== target);
-            this.setActiveItem();
+        unlinked: function (target) {
+            this.children = this.children.filter(function (item) { return item !== target; });
+            this.updateChildren();
         }
     },
     props: {
-        active: Number,
-        activeColor: String,
+        active: {
+            type: null,
+            observer: 'updateChildren'
+        },
+        activeColor: {
+            type: String,
+            observer: 'updateChildren'
+        },
+        inactiveColor: {
+            type: String,
+            observer: 'updateChildren'
+        },
         fixed: {
+            type: Boolean,
+            value: true
+        },
+        border: {
             type: Boolean,
             value: true
         },
         zIndex: {
             type: Number,
             value: 1
+        },
+        safeAreaInsetBottom: {
+            type: Boolean,
+            value: true
         }
     },
-    watch: {
-        active(active) {
-            this.currentActive = active;
-            this.setActiveItem();
-        }
-    },
-    created() {
-        this.currentActive = this.data.active;
+    beforeCreate: function () {
+        this.children = [];
     },
     methods: {
-        setActiveItem() {
-            if (!Array.isArray(this.children) || !this.children.length) {
+        updateChildren: function () {
+            var children = this.children;
+            if (!Array.isArray(children) || !children.length) {
                 return Promise.resolve();
             }
-            return Promise.all(this.children.map((item, index) => item.setActive({
-                active: index === this.currentActive,
-                color: this.data.activeColor
-            })));
+            return Promise.all(children.map(function (child) { return child.updateFromParent(); }));
         },
-        onChange(child) {
-            const active = (this.children || []).indexOf(child);
-            if (active !== this.currentActive && active !== -1) {
-                this.currentActive = active;
-                this.setActiveItem().then(() => {
-                    this.$emit('change', active);
-                });
+        onChange: function (child) {
+            var index = this.children.indexOf(child);
+            var active = child.data.name || index;
+            if (active !== this.data.active) {
+                this.$emit('change', active);
             }
         }
     }

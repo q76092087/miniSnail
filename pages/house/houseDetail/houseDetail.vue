@@ -4,8 +4,8 @@
 			<block slot="backText">返回</block>
 			<block slot="content">房源详情</block>
 		</cu-custom>
-		<swiper class="screen-swiper square-dot"  :indicator-dots="true" :circular="true"
-			:autoplay="true" interval="5000" duration="500">
+		<swiper class="screen-swiper square-dot" :indicator-dots="true" :circular="true" :autoplay="true" interval="5000"
+		 duration="500">
 			<swiper-item v-for="(item,index) in swiperList" :key="index">
 				<image :src="item.url" mode="aspectFill" v-if="item.type=='image'"></image>
 				<video :src="item.url" autoplay loop muted :show-play-btn="false" :controls="false" objectFit="cover" v-if="item.type=='video'"></video>
@@ -104,31 +104,71 @@
 				<hourse-card v-for="item in 8"></hourse-card>
 			</view>
 		</view>
-		<view class="cu-bar bg-white tabbar border shop foot">
-			<button class="action" open-type="contact">
-				<view class="cuIcon-service text-green">
-					<view class="cu-tag badge"></view>
-				</view>
-				客服
-			</button>
-			<view class="action text-orange">
-				<view class="cuIcon-favorfill"></view> 已收藏
+		<view class="cu-bar bg-white tabbar border foot shop">
+			<view class="">
+				<view class="cu-avatar round margin-lr-xs" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg)"></view>
+				<text>杨耀豪</text>
 			</view>
 			<view class="action">
-				<view class="cuIcon-cart">
-					<view class="cu-tag badge">99</view>
+				<view class="cuIcon-people">
+					<view class="cu-tag badge">999</view>
 				</view>
-				购物车
+				累计预约
 			</view>
-			<view class="bg-red submit">立即订购</view>
+			<view class="btn-group">
+				<button class="cu-btn bg-blue round shadow-blur"><text class="cuIcon-dianhua"></text>电话咨询</button>
+				<button class="cu-btn bg-red round shadow-blur" @click="bookMeet"><text class="cuIcon-message"></text>预约看房</button>
+			</view>
 		</view>
+
+
+		<view class="cu-modal" :class="modalName=='bookModal'?'show':''" @click="hideModal">
+			<view class="cu-dialog" @tap.stop="">
+				<view class="cu-bar bg-white justify-end">
+					<view class="content">选择预约时间段</view>
+					<view class="action" @tap="hideModal">
+						<text class="cuIcon-close text-red"></text>
+					</view>
+				</view>
+				<view>
+					<van-radio-group :value="bookRadioFlag" @change="bookRadioChange">
+						<van-cell-group>
+							<van-cell v-for="(item,index) in timeGroup" :key="index" :title="item.label" clickable @click="bookRadioClick(index)">
+								<van-radio slot="right-icon" :name="index"/>
+							</van-cell>
+						</van-cell-group>
+					</van-radio-group>
+				</view>
+				<view class="cu-bar bg-white justify-end">
+					<view class="action">
+						<button class="cu-btn line-green text-green" @tap="hideModal">取消</button>
+						<button class="cu-btn bg-green margin-left" @tap="hideModal">确定</button>
+					</view>
+				</view>
+			</view>
+		</view>
+		
+		<van-popup 
+			:show=" modalName==='dateModal' " 
+			position="bottom"
+			@close="hideModal"
+			custom-style="height: 50%;z-index:9999;"
+		>
+			<van-datetime-picker
+			  type="date"
+			  :value=" currentDate "
+			  @cancel="hideModal"
+			  @confirm="dateChoose"
+			  :min-date=" minDate "
+			/>
+		</van-popup>
 	</view>
 </template>
 
 <script>
 	import HourseCard from '@/components/common/hourseCard.vue'
 	export default {
-		components:{
+		components: {
 			HourseCard
 		},
 		data() {
@@ -162,23 +202,55 @@
 					type: 'image',
 					url: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg'
 				}],
+				timeGroup:[
+					{label:'9:00',timestamp:32400000},
+					{label:'15:00',timestamp:54000000}
+				],
+				modalName: '',
+				bookRadioFlag:'0',
+				currentDate: new Date().getTime(),
+				minDate: new Date().getTime()
 			}
 		},
 		methods: {
-
+			// 隐藏模态框
+			hideModal() {
+				this.modalName = null;
+			},
+			// 预约看房点击
+			bookMeet() {
+				this.modalName = 'dateModal';
+			},
+			// 预约看房radio改变
+			bookRadioChange(e){
+				console.log('bookRadioChange',e);
+			},
+			// cell的点击
+			bookRadioClick(index){
+				console.log('bookRadioClick',index);
+				this.bookRadioFlag = index+'';
+			},
+			// 时间年月日确认
+			dateChoose(e){
+				console.log('选择的时间',e.detail); // 时间戳
+				this.modalName = 'bookModal';
+			}
 		}
 	}
 </script>
 
 <style scoped>
-.relative-top{
-	position: relative;
-	top: 2px;
-}
-.border-bottom-none::after{
-	border-bottom: none !important;
-}
-.padding-bottom-cubar{
-	padding-bottom: 100rpx;
-}
+	.relative-top {
+		position: relative;
+		top: 2px;
+	}
+
+	.border-bottom-none::after {
+		border-bottom: none !important;
+	}
+
+	.padding-bottom-cubar {
+		padding-bottom: 100rpx;
+	}
+	
 </style>

@@ -16,7 +16,7 @@
 			</van-dropdown-item>
 		</van-dropdown-menu>
 		<scroll-view scroll-y="true" class="hourlist-container">
-			<hourse-card v-for="item in 8"></hourse-card>
+			<hourse-card v-for="item in 8" @click.native='toHourseDetail'></hourse-card>
 		</scroll-view>
 	</view>
 </template>
@@ -100,7 +100,11 @@
 
 		},
 		methods: {
-
+			toHourseDetail(){
+				this.$Router.push({
+					name:'houseDetail'
+				})
+			}
 		}
 	}
 </script>

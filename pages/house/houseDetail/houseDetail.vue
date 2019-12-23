@@ -90,7 +90,7 @@
 				</view>
 			</view>
 			<view class="padding-lr padding-bottom bg-white">
-				光明大街旁 学区房 光源好 两居室 配套齐全 出行方便
+				光明大街旁 学区房 光源好 两居室 配套齐全 出行方便 距离市场比较近 买菜方便 地铁附近
 			</view>
 		</view>
 		<view class="padding-bottom-cubar">

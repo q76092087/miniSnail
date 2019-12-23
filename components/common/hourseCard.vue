@@ -1,5 +1,5 @@
 <template>
-	<view class="response padding-xs bg-white flex solids-bottom">
+	<view class="response padding-xs bg-white flex solid-bottom">
 		<view class="flex-twice">
 			<image src="https://z1.muscache.cn/im/pictures/f45d0508-bcef-4b81-a090-c18d37429bd9.jpg?aki_policy=xx_large" mode="widthFix" class="response"></image>
 		</view>

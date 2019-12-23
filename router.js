@@ -16,6 +16,10 @@ export default new Router({
 		{
 			path: "/pages/house/houseList/houseList",
 			name: "houseList"
+		},
+		{
+			path: "/pages/house/houseDetail/houseDetail",
+			name: "houseDetail"
 		}
 	]
 })

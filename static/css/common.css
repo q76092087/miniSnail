@@ -23,3 +23,12 @@
  	height: 72upx;
  	font-size: 1.5em;
  }
+ 
+ /* ==================
+           右边垂直居中fixed
+  ==================== */
+ .fixed-right-center{
+	position: fixed;
+	top: 40%;
+	right: 30upx;
+ }

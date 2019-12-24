@@ -100,7 +100,7 @@
 			},
 			sexPickerChange(e){
 				console.log('选择的性别索引',e.detail.value)
-				console.log('选择的性别',this.sexPicker[e.detail.value])
+				console.log('选择的性别',this.sexRange[e.detail.value])
 			},
 			regionPickerChange(e){
 				// this.regionPicker = e.detail.value;

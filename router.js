@@ -24,6 +24,10 @@ export default new Router({
 		{
 			path: "/subPages/user/userInfo/userInfo",
 			name: "userInfo"
+		},
+		{
+			path:"/subPages/house/rentingHouseDetail/rentingHouseDetail",
+			name:"rentingHouseDetail"
 		}
 	]
 })

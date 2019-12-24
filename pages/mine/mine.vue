@@ -5,11 +5,11 @@
 			<block slot="content">个人中心</block>
 		</cu-custom>
 		<div class="padding bg-gradual-blue flex justify-between align-center">
-			<div class="flex justify-start align-center">
+			<div class="flex justify-start align-center" @click="toUserInfo">
 				<div class="cu-avatar lg round margin-left" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big99008.jpg);"></div>
 				<div class="padding-left-sm">
 					<p class="text-lg">杨耀豪</p>
-					<p>134****7488</p>
+					<p class="padding-top-xs">134****7488</p>
 				</div>
 			</div>
 			<div class="my-icon">
@@ -116,6 +116,11 @@
 					fail(e){
 						console.log("失败",e);
 					}
+				})
+			},
+			toUserInfo(){
+				this.$Router.push({
+					name:'userInfo'
 				})
 			}
 		}

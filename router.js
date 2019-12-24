@@ -14,11 +14,11 @@ export default new Router({
 			name: "mine"
 		},
 		{
-			path: "/pages/house/houseList/houseList",
+			path: "/subPages/house/houseList/houseList",
 			name: "houseList"
 		},
 		{
-			path: "/pages/house/houseDetail/houseDetail",
+			path: "/subPages/house/houseDetail/houseDetail",
 			name: "houseDetail"
 		}
 	]

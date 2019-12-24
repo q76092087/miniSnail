@@ -148,7 +148,7 @@
 			</view>
 		</view>
 		
-		<van-popup 
+		<!-- <van-popup 
 			:show=" modalName==='dateModal' " 
 			position="bottom"
 			@close="hideModal"
@@ -161,7 +161,24 @@
 			  @confirm="dateChoose"
 			  :min-date=" minDate "
 			/>
-		</van-popup>
+		</van-popup> -->
+		<view class="cu-modal bottom-modal" :class="modalName=='dateModal'?'show':''">
+			<view class="cu-dialog">
+				<!-- <view class="cu-bar bg-white"> -->
+					<!-- <view class="action text-green" @click="dateChoose">确定</view> -->
+					<!-- <view class="action text-blue" @click="hideModal">取消</view> -->
+				<!-- </view> -->
+				<view>
+					<van-datetime-picker
+					  type="date"
+					  :value=" currentDate "
+					  @cancel="hideModal"
+					  @confirm="dateChoose"
+					  :min-date=" minDate "
+					/>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 

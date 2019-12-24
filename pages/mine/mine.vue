@@ -17,7 +17,7 @@
 			</div>
 		</div>
 		
-		<view class="cu-list grid col-2 no-border">
+		<!-- <view class="cu-list grid col-2 no-border">
 			<view class="cu-item">
 				<view class="cuIcon-likefill text-red"></view>
 				<text>我的收藏</text>
@@ -26,11 +26,11 @@
 				<view class="cuIcon-footprint text-red"></view>
 				<text>浏览历史</text>
 			</view>
-			<!-- <view class="cu-item">
+			<view class="cu-item">
 				<view class="cuIcon-footprint text-red"></view>
 				<text>我的赞</text>
-			</view> -->
-		</view>
+			</view>
+		</view> -->
 		
 		<div class="cu-list menu margin-top-sm">
 			<!-- <view class="cu-item arrow">
@@ -39,12 +39,7 @@
 					<text class="text-grey">我的交易</text>
 				</view>
 			</view> -->
-			<view class="cu-item arrow">
-				<view class="content">
-					<text class="cuIcon-share text-grey"></text>
-					<text class="text-grey">我的分销</text>
-				</view>
-			</view>
+			
 			<!-- <view class="cu-item arrow">
 				<view class="content">
 					<text class="cuIcon-share text-grey"></text>
@@ -53,14 +48,44 @@
 			</view> -->
 			<view class="cu-item arrow">
 				<view class="content">
+					<text class="cuIcon-like text-grey"></text>
+					<text class="text-black">我的收藏</text>
+				</view>
+			</view>
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-footprint text-grey"></text>
+					<text class="text-black">浏览历史</text>
+				</view>
+			</view>
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-location text-grey"></text>
+					<text class="text-black">我的地址</text>
+				</view>
+			</view>
+			<view class="cu-item arrow">
+				<view class="content">
 					<text class="cuIcon-phone text-grey"></text>
-					<text class="text-grey">我的预约</text>
+					<text class="text-black">我的预约</text>
+				</view>
+			</view>
+			<view class="cu-item arrow">
+				<view class="content">
+					<text class="cuIcon-share text-grey"></text>
+					<text class="text-black">我的分销</text>
 				</view>
 			</view>
 			<view class="cu-item arrow">
 				<view class="content">
 					<text class="cuIcon-question text-grey"></text>
-					<text class="text-grey">问题反馈</text>
+					<text class="text-black">问题反馈</text>
+				</view>
+			</view>
+			
+			<view class="cu-item margin-top-sm">
+				<view class="content text-center">
+					<text class="text-black">退出登录</text>
 				</view>
 			</view>
 		</div>

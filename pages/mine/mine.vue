@@ -58,12 +58,12 @@
 					<text class="text-black">浏览历史</text>
 				</view>
 			</view>
-			<view class="cu-item arrow">
+			<!-- <view class="cu-item arrow">
 				<view class="content">
 					<text class="cuIcon-location text-grey"></text>
 					<text class="text-black">我的地址</text>
 				</view>
-			</view>
+			</view> -->
 			<view class="cu-item arrow">
 				<view class="content">
 					<text class="cuIcon-phone text-grey"></text>

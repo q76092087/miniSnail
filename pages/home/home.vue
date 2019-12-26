@@ -55,7 +55,7 @@
 			</scroll-view>
 		</view>
 		
-		<view class="new-hourse">
+		<view>
 			<view class="cu-bar bg-white">
 				<view class="action">
 					<text class="iconfont snailnew text-orange cuIcon-"></text>最新房源

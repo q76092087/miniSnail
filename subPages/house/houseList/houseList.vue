@@ -11,6 +11,9 @@
 			</van-dropdown-item>
 			<van-dropdown-item title='均价' :options="option1">
 			</van-dropdown-item>
+			<van-dropdown-item title='月租' :options="option3">
+			
+			</van-dropdown-item>
 			<van-dropdown-item title='户型' :options="option2">
 
 			</van-dropdown-item>
@@ -70,6 +73,28 @@
 						text: '四室一厅',
 						value: 4
 					}
+				],
+				option3:[
+					{
+						text:'不限',
+						value:0
+					},
+					{
+						text:'1000以下/月',
+						value:0
+					},
+					{
+						text:'1000-2000/月',
+						value:0
+					},
+					{
+						text:'2000-3000/月',
+						value:0
+					},
+					{
+						text:'3000以上/月',
+						value:0
+					},
 				],
 				value1: 0,
 				items: [{

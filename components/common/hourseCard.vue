@@ -7,8 +7,9 @@
 			<view class="text-df text-bold">
 				中海御城南苑 东南向 中高层 楼栋优势明显 安静不吵
 			</view>
-			<view class="text-xs">
-				2室1厅 77m² 北 浛洸镇新市场
+			<view class="text-xs flex justify-between">
+				<text>2室1厅 77m² 北 浛洸镇新市场</text>
+				<text>12小时前</text>
 			</view>
 			<view>
 				<view class='cu-tag radius sm light bg-red'>满两年啊</view>
@@ -17,8 +18,11 @@
 				<view class='cu-tag radius sm light bg-red'>满两年啊</view>
 			</view>
 			<view class="">
-				<span class="text-red text-bold text-df margin-right-xs">143万</span>
-				<span class="text-xs">8888/m²</span>
+				<view class="inline-block margin-right-xs">
+					<span class="text-red text-bold text-df margin-right-xs">143万</span>
+					<span class="text-xs">8888元/m²</span>
+				</view>
+				<span class="text-xs">500元/月</span>
 			</view>
 		</view>
 	</view>
